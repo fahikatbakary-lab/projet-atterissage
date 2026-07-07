@@ -1,9 +1,70 @@
 
+:root {
+    --primary: #73222e;
+    --primary-dark: #8d3643;
+    --text: #2f2f2f;
+    --bg: #f9f9f9;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    color: var(--text);
+    background: var(--bg);
+    line-height: 1.6;
+}
+
+.navbar {
+    transition: all 0.3s ease;
+    background: rgba(255, 255, 255, 0.2) !important;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+    border: none;
+    box-shadow: none;
+}
+
+.navbar-brand {
+    color: var(--primary) !important;
+    letter-spacing: 0.05em;
+}
+
+.nav-link {
+    font-weight: 500;
+    color: var(--text) !important;
+    transition: color 0.3s ease;
+}
+
+.nav-link:hover,
+.nav-link.active {
+    color: var(--primary) !important;
+}
+
+.section-title {
+    font-weight: 700;
+    margin-bottom: 1.5rem;
+    position: relative;
+    display: inline-block;
+}
+
+.section-title::after {
+    content: "";
+    display: block;
+    width: 60px;
+    height: 4px;
+    background: var(--primary);
+    margin-top: 0.5rem;
+    border-radius: 2px;
+}
+
 /* HERO SECTION */
 .hero {
     position: relative;
     height: 80vh;
     overflow: hidden;
+    min-height: 500px;
 }
 
 .hero img {
@@ -42,7 +103,7 @@
 
 
 .heros h1 {
-    font-size: 3rem;
+    font-size: clamp(2rem, 3.2vw, 3.2rem);
     font-weight: bold;
 }
 
@@ -50,30 +111,42 @@
 .heros p {
     font-size: 1.2rem;
     margin: 15px 0;
+    max-width: 700px;
 }
 
 .btn {
-    background: orange;
+    background: var(--primary);
     color: white;
     padding: 10px 25px;
     text-decoration: none;
-    border-radius: 5px;
+    border-radius: 999px;
+    border: none;
     transition: 0.3s;
+    box-shadow: 0 8px 20px rgba(115, 34, 46, 0.2);
 }
 
 .btn:hover {
-    background: darkorange;
+    background: var(--primary-dark);
+    transform: translateY(-2px);
+    border-color: transparent;
+}
+
+.btn:focus,
+.btn:active {
+    outline: none;
+    box-shadow: none;
+    border: none;
 }
 
 /* ================= RESPONSIVE ================= */
 
 /* TABLETTE */
 @media (max-width: 992px) {
-    .hero-content h1 {
+    .heros h1 {
         font-size: 2.5rem;
     }
 
-    .hero-content p {
+    .heros p {
         font-size: 1.1rem;
     }
 }
@@ -84,11 +157,11 @@
         height: 80vh;
     }
 
-    .hero-content h1 {
+    .heros h1 {
         font-size: 2rem;
     }
 
-    .hero-content p {
+    .heros p {
         font-size: 1rem;
     }
 
@@ -100,11 +173,11 @@
 
 /* PETIT TELEPHONE */
 @media (max-width: 480px) {
-    .hero-content h1 {
+    .heros h1 {
         font-size: 1.6rem;
     }
 
-    .hero-content p {
+    .heros p {
         font-size: 0.9rem;
     }
 }
@@ -115,11 +188,12 @@
       border-radius: 15px;
       overflow: hidden;
       box-shadow: 0 5px 15px rgba(0,0,0,0.1);
-      transition: transform 0.3s ease;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
     }
 
     .card:hover {
       transform: translateY(-10px);
+      box-shadow: 0 12px 24px rgba(0,0,0,0.15);
     }
 
   
@@ -145,9 +219,9 @@
 
 .form-control {
   background: #ffffff;
-  padding: 30px;
-  border-radius: 15px;
-  box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+  padding: 12px 15px;
+  border-radius: 12px;
+  box-shadow: 0 8px 25px rgba(0,0,0,0.06);
 }
 
 /* Champs input */
@@ -161,6 +235,7 @@
 
 /* Effet focus */
  .form-control:focus {
-  border-color: darkorange;
+  border-color: var(--primary);
+  box-shadow: 0 0 0 0.2rem rgba(255, 140, 0, 0.2);
 }
 
