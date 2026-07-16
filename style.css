@@ -19,11 +19,12 @@ body {
 
 .navbar {
     transition: all 0.3s ease;
-    background: rgba(255, 255, 255, 0.2) !important;
+    background: rgba(255, 255, 255, 0.96) !important;
     backdrop-filter: blur(8px);
     -webkit-backdrop-filter: blur(8px);
     border: none;
-    box-shadow: none;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    padding: 0.8rem 0;
 }
 
 .navbar-brand {
@@ -31,15 +32,33 @@ body {
     letter-spacing: 0.05em;
 }
 
-.nav-link {
-    font-weight: 500;
+.navbar-nav .nav-link {
+    font-weight: 600;
     color: var(--text) !important;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
+    padding: 0.6rem 0.9rem;
+    margin: 0 0.2rem;
+    border-radius: 999px;
 }
 
-.nav-link:hover,
-.nav-link.active {
-    color: var(--primary) !important;
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link.active {
+    color: white !important;
+    background: var(--primary);
+}
+
+@media (max-width: 991.98px) {
+    .navbar-collapse {
+        background: white;
+        border-radius: 1rem;
+        padding: 0.75rem;
+        margin-top: 0.75rem;
+        box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+    }
+
+    .navbar-nav .nav-link {
+        margin: 0.2rem 0;
+    }
 }
 
 .section-title {
