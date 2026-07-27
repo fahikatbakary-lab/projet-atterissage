@@ -1,15 +1,409 @@
 const STORAGE_KEY = 'bkyshop_orders';
+const WHATSAPP_NUMBER = '2250544950997';
+const EMAIL_TO = 'fahikatbakary@gmail.com';
+
+// ============================================================
+// 🏪 BASE DE DONNÉES PRODUITS
+// ============================================================
+const PRODUCTS = {
+  // ---- VALISES ----
+  'complet-valise-gomme': {
+    id: 'complet-valise-gomme',
+    name: 'Complet de valise en gomme',
+    price: '44 000 FCFA',
+    description: 'Un ensemble complet de valises en gomme de haute qualité. Idéal pour les voyages prolongés avec un style élégant et professionnel.',
+    mainImage: '../image/complet de valise.png',
+    features: ['Lot de 3 valises', 'Disponibilité : En stock'],
+    category: 'Valises'
+  },
+  'valise-cabine-noire-10kg': {
+    id: 'valise-cabine-noire-10kg',
+    name: 'Valise cabine noire 10kg',
+    price: '15 000 FCFA',
+    description: 'Valise cabine compacte et légère, parfaite pour les voyages courts. Format cabine accepté en avion, design noir élégant.',
+    mainImage: '../image/VALISE.webp',
+    features: ['Couleur disponible : Noir', 'Disponibilité : En stock'],
+    category: 'Valises'
+  },
+  'valise-premium-30kg': {
+    id: 'valise-premium-30kg',
+    name: 'Valise premium rigide 30kg',
+    price: '28 000 FCFA',
+    description: 'Valise grand format avec coque rigide ultra-résistante. Capacité maximale pour les longs séjours et les voyages en famille.',
+    mainImage: '../image/valise verte.png',
+    features: ['Couleur disponible : Vert foncé', 'Disponibilité : Stock faible'],
+    category: 'Valises'
+  },
+
+  'valise-beige-15kg': {
+    id: 'valise-beige-15kg',
+    name: 'Valise en coque Beige 15kg',
+    price: '18 000 FCFA',
+    description: 'Valise légère et rigide, parfaite pour vos déplacements professionnels ou personnels. Dimensions compactes, excellente résistance et finition premium.',
+    mainImage: '../image/valise beige.jpeg',
+    gallery: ['../image/valise beige.jpeg', '../image/VALISE.webp', '../image/valise rose.jpeg', '../image/valise verte.png'],
+    features: ['Couleur disponible : Beige', 'Disponibilité : En stock'],
+    category: 'Valises'
+  },
+  'valise-rose-15kg': {
+    id: 'valise-rose-15kg',
+    name: 'Valise en coque rose 15kg',
+    price: '18 000 FCFA',
+    description: 'Modèle compact, confortable et élégant pour les courts séjours. Finition soignée et légèreté optimale.',
+    mainImage: '../image/valise rose.jpeg',
+    gallery: ['../image/valise rose.jpeg', '../image/VALISE.webp', '../image/valise beige.jpeg', '../image/valise verte.png'],
+    features: ['Couleur disponible : Rose', 'Disponibilité : En stock'],
+    category: 'Valises'
+  },
+  'valise-verte-23kg': {
+    id: 'valise-verte-23kg',
+    name: 'Valise en coque verte 23kg',
+    price: '21 000 FCFA',
+    description: 'Une finition premium avec une grande capacité de rangement. Idéale pour les longs séjours et les voyages en famille.',
+    mainImage: '../image/valise verte.png',
+    gallery: ['../image/valise verte.png', '../image/VALISE.webp', '../image/valise beige.jpeg', '../image/valise rose.jpeg'],
+    features: ['Couleur disponible : Verte', 'Disponibilité : Stock faible'],
+    category: 'Valises'
+  },
+
+  // ---- SACS DE VOYAGE ----
+  'sac-sport-beige': {
+    id: 'sac-sport-beige',
+    name: 'Sac de sport beige',
+    price: '8 000 FCFA',
+    description: 'Sac de sport pratique et léger, idéal pour le sport ou les escapades du week-end. Compartiment principal spacieux.',
+    mainImage: '../image/sasc moyen .jpeg',
+    features: ['Couleur disponible : Beige', 'Disponibilité : En stock'],
+    category: 'Sacs de voyage'
+  },
+  'sac-dos-voyage-noir': {
+    id: 'sac-dos-voyage-noir',
+    name: 'Sac à dos de voyage noir',
+    price: '14 000 FCFA',
+    description: 'Sac à dos grand format conçu pour les voyages. Multiple compartiments, finitions solides et design moderne en tissu noir.',
+    mainImage: '../image/gros sacs.jpeg',
+    features: ['Couleur disponible : Noir', 'Disponibilité : En stock'],
+    category: 'Sacs de voyage'
+  },
+  'sac-week-end-bleu': {
+    id: 'sac-week-end-bleu',
+    name: 'Sac week-end bleu',
+    price: '11 000 FCFA',
+    description: 'Sac week-end élégant en tissu bleu, parfait pour les courts séjours. Léger, pratique et très résistant.',
+    mainImage: '../image/sac bleu.jpeg',
+    features: ['Couleur disponible : Bleu', 'Disponibilité : Stock faible'],
+    category: 'Sacs de voyage'
+  },
+
+  'sac-moyen-format': {
+    id: 'sac-moyen-format',
+    name: 'Sac Voyage moyen format',
+    price: '9 000 FCFA',
+    description: 'Sac résistant avec plusieurs compartiments pour un rangement impeccable de vos affaires personnelles.',
+    mainImage: '../image/sacs moyen.jpeg',
+    gallery: ['../image/sacs moyen.jpeg', '../image/gros sacs.jpeg', '../image/sac bleu.jpeg', '../image/SACS DE VOYAGE.webp'],
+    features: ['Couleur disponible : Beige', 'Disponibilité : En stock'],
+    category: 'Sacs de voyage'
+  },
+  'sac-noir-tissu': {
+    id: 'sac-noir-tissu',
+    name: 'Grand Sac Voyage Noir en tissu',
+    price: '12 000 FCFA',
+    description: 'Conçu pour voyager léger avec un look premium et des finitions soignées. Très grand format pour maximiser le rangement.',
+    mainImage: '../image/gros sacs.jpeg',
+    gallery: ['../image/gros sacs.jpeg', '../image/sacs moyen.jpeg', '../image/sac bleu.jpeg', '../image/SACS DE VOYAGE.webp'],
+    features: ['Couleur disponible : Noir', 'Disponibilité : En stock'],
+    category: 'Sacs de voyage'
+  },
+  'sac-bleu-tissu': {
+    id: 'sac-bleu-tissu',
+    name: 'Sac Voyage Bleu format moyen en tissu',
+    price: '10 000 FCFA',
+    description: 'Un sac résistant et élégant pour des escapades dynamiques et stylées. Format moyen idéal pour le quotidien.',
+    mainImage: '../image/sac bleu.jpeg',
+    gallery: ['../image/sac bleu.jpeg', '../image/sacs moyen.jpeg', '../image/gros sacs.jpeg', '../image/SACS DE VOYAGE.webp'],
+    features: ['Couleur disponible : Bleu', 'Disponibilité : Stock faible'],
+    category: 'Sacs de voyage'
+  },
+
+  // ---- SÉCHOIRS ----
+  'sechoir-inox': {
+    id: 'sechoir-inox',
+    name: 'Séchoir en inox',
+    price: '22 000 FCFA',
+    description: 'Séchoir haut de gamme en inox brossé. Résistant à la rouille, design moderne et grande capacité de séchage.',
+    mainImage: '../image/sechoir .webp',
+    features: ['Couleur disponible : Argenté', 'Disponibilité : En stock'],
+    category: 'Séchoirs'
+  },
+  'sechoir-pliant-compact': {
+    id: 'sechoir-pliant-compact',
+    name: 'Séchoir pliant compact',
+    price: '14 500 FCFA',
+    description: 'Séchoir pliant facile à ranger et à transporter. Idéal pour les petits espaces et les voyages.',
+    mainImage: '../image/SECHOIR.webp',
+    features: ['Couleur disponible : Blanc', 'Disponibilité : En stock'],
+    category: 'Séchoirs'
+  },
+  'sechoir-mural': {
+    id: 'sechoir-mural',
+    name: 'Séchoir mural',
+    price: '25 000 FCFA',
+    description: 'Séchoir mural fixe, gain de place et très pratique pour les salles de bain. Design moderne et résistant.',
+    mainImage: '../image/sechoirs.webp',
+    features: ['Couleur disponible : Gris', 'Disponibilité : Stock faible'],
+    category: 'Séchoirs'
+  },
+
+  'sechoir-fer': {
+    id: 'sechoir-fer',
+    name: 'Séchoir en fer',
+    price: '12 500 FCFA',
+    description: 'Séchoir robuste, facile à installer et à utiliser. Parfait pour un séchage rapide et sécurisé de vos vêtements.',
+    mainImage: '../image/sechoir .webp',
+    gallery: ['../image/sechoir .webp', '../image/sechoir plastique.webp', '../image/sechoirs.webp', '../image/SECHOIR.webp'],
+    features: ['Couleur disponible : Noir', 'Disponibilité : En stock'],
+    category: 'Séchoirs'
+  },
+  'sechoir-plastique': {
+    id: 'sechoir-plastique',
+    name: 'Séchoir en plastique',
+    price: '19 000 FCFA',
+    description: 'Une finition élégante et une performance de séchage fiable. Design moderne pour une meilleure optimisation de l’espace.',
+    mainImage: '../image/sechoir plastique.webp',
+    gallery: ['../image/sechoir plastique.webp', '../image/sechoir .webp', '../image/sechoirs.webp', '../image/SECHOIR.webp'],
+    features: ['Couleur disponible : Beige', 'Disponibilité : En stock'],
+    category: 'Séchoirs'
+  },
+  'sechoir-arretable': {
+    id: 'sechoir-arretable',
+    name: 'Séchoir arrêtable',
+    price: '18 000 FCFA',
+    description: 'Un design moderne pour une meilleure optimisation de l’espace. Facile à ranger et pratique au quotidien.',
+    mainImage: '../image/sechoirs.webp',
+    gallery: ['../image/sechoirs.webp', '../image/sechoir .webp', '../image/sechoir plastique.webp', '../image/SECHOIR.webp'],
+    features: ['Couleur disponible : Rouge', 'Disponibilité : Stock faible'],
+    category: 'Séchoirs'
+  },
+
+  // ---- VENTILATEURS ----
+  'ventilateur-crown-blanc': {
+    id: 'ventilateur-crown-blanc',
+    name: 'Ventilateur CROWN Blanc',
+    price: '12 000 FCFA',
+    description: 'Ventilateur de table CROWN blanc, silencieux et élégant. Parfait pour un usage quotidien au bureau ou à la maison.',
+    mainImage: '../image/ventilateur.webp',
+    features: ['Couleur disponible : Blanc', 'Disponibilité : En stock'],
+    category: 'Ventilateurs CROWN'
+  },
+  'ventilateur-crown-table': {
+    id: 'ventilateur-crown-table',
+    name: 'Ventilateur CROWN Sur Table',
+    price: '7 500 FCFA',
+    description: 'Petit ventilateur de table compact et économique. Idéal pour rafraîchir votre espace de travail sans faire de bruit.',
+    mainImage: '../image/ventilo.jpg',
+    features: ['Couleur disponible : Beige', 'Disponibilité : En stock'],
+    category: 'Ventilateurs CROWN'
+  },
+  'ventilateur-plafonnier-luxe': {
+    id: 'ventilateur-plafonnier-luxe',
+    name: 'Ventilateur Plafonnier Luxe',
+    price: '22 000 FCFA',
+    description: 'Ventilateur plafonnier haut de gamme avec design luxueux. Silencieux, puissant et idéal pour les grands espaces.',
+    mainImage: '../image/ventio pla.webp',
+    features: ['Couleur disponible : Rouge', 'Disponibilité : Stock faible'],
+    category: 'Ventilateurs CROWN'
+  },
+
+  'ventilateur-crown-noir': {
+    id: 'ventilateur-crown-noir',
+    name: 'Ventilateur CROWN Noir',
+    price: '16 000 FCFA',
+    description: 'Silencieux, puissant et idéal pour rafraîchir une pièce rapidement. Design élégant pour tout type d’intérieur.',
+    mainImage: '../image/ventilateur.webp',
+    gallery: ['../image/ventilateur.webp', '../image/ventilo.jpg', '../image/ventio pla.webp', '../image/ventilateur.webp'],
+    features: ['Couleur disponible : Noir', 'Disponibilité : En stock'],
+    category: 'Ventilateurs CROWN'
+  },
+  'ventilateur-kirikou': {
+    id: 'ventilateur-kirikou',
+    name: 'Ventilateur CROWN Kirikou',
+    price: '8 500 FCFA',
+    description: 'Un design moderne pour un confort visuel et thermique optimal. Léger et efficace pour une utilisation quotidienne.',
+    mainImage: '../image/ventilo.jpg',
+    gallery: ['../image/ventilo.jpg', '../image/ventilateur.webp', '../image/ventio pla.webp', '../image/ventilo.jpg'],
+    features: ['Couleur disponible : Beige', 'Disponibilité : En stock'],
+    category: 'Ventilateurs CROWN'
+  },
+  'ventilateur-plafonnier-metro': {
+    id: 'ventilateur-plafonnier-metro',
+    name: 'Ventilateur Plafonnier Metro',
+    price: '17 000 FCFA',
+    description: 'Puissance et performance, avec un rendu visuel distinctif. Design plafonnier pour un confort durable.',
+    mainImage: '../image/ventio pla.webp',
+    gallery: ['../image/ventio pla.webp', '../image/ventilateur.webp', '../image/ventilo.jpg', '../image/ventio pla.webp'],
+    features: ['Couleur disponible : Rouge', 'Disponibilité : Stock faible'],
+    category: 'Ventilateurs CROWN'
+  }
+};
+
+// ============================================================
+// 🔄 CHARGEMENT DYNAMIQUE DE LA FICHE PRODUIT
+// ============================================================
+function initProductPage() {
+  const productContainer = document.querySelector('[data-product-container]');
+  if (!productContainer) return;
+
+  const params = new URLSearchParams(window.location.search);
+  const productId = params.get('id');
+  const product = PRODUCTS[productId];
+
+  if (!product) {
+    productContainer.innerHTML = `
+      <div class="text-center py-5">
+        <h3>Produit non trouvé</h3>
+        <p>Le produit que vous recherchez n\'existe pas ou a été retiré.</p>
+        <a href="valises.html" class="btn btn-primary-custom">Voir nos produits</a>
+      </div>
+    `;
+    return;
+  }
+
+  // Mise à jour du titre de la page
+  document.title = `${product.name} - BKYSHOP`;
+
+  // Image principale
+  const galleryMain = productContainer.querySelector('[data-gallery-main]');
+  if (galleryMain) {
+    galleryMain.src = product.mainImage;
+    galleryMain.alt = product.name;
+  }
+
+  // Nom du produit
+  const nameEl = productContainer.querySelector('[data-product-name]');
+  if (nameEl) nameEl.textContent = product.name;
+
+  // Prix
+  const priceEl = productContainer.querySelector('[data-product-price]');
+  if (priceEl) priceEl.textContent = product.price;
+
+  // Description
+  const descEl = productContainer.querySelector('[data-product-desc]');
+  if (descEl) descEl.textContent = product.description;
+
+  // Caractéristiques
+  const featuresEl = productContainer.querySelector('[data-product-features]');
+  if (featuresEl) {
+    featuresEl.innerHTML = product.features.map(f => `<li>${f}</li>`).join('');
+  }
+
+  // Nom du produit dans le formulaire de commande (readonly)
+  // Le modal est en dehors du data-product-container, on cherche dans tout le document
+  const orderProductInput = document.querySelector('[data-order-product]');
+  if (orderProductInput) orderProductInput.value = product.name;
+
+}
+
+
+// ============================================================
+// 🛒 BOUTONS COMMANDER SUR LES PAGES CATÉGORIES
+// ============================================================
+function initCategoryOrderButtons() {
+  // Ne pas exécuter sur la page produit (le modal existe déjà)
+  if (document.querySelector('[data-product-container]')) return;
+
+  const btns = document.querySelectorAll('[data-product-id]');
+  if (!btns.length) return;
+
+  // Injecter le modal une seule fois
+  let modal = document.getElementById('orderModal');
+  if (!modal) {
+    const modalHTML = `
+      <div class="modal fade" id="orderModal" tabindex="-1">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title">Formulaire de commande</h5>
+              <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+            </div>
+            <div class="modal-body">
+              <form data-validate-form>
+                <div class="row g-3">
+                  <div class="col-md-6"><input class="form-control" type="text" name="nom" placeholder="Nom" required /></div>
+                  <div class="col-md-6"><input class="form-control" type="tel" name="telephone" placeholder="Téléphone" required /></div>
+                  <div class="col-md-6"><input class="form-control" type="text" name="ville" placeholder="Ville" required /></div>
+                  <div class="col-md-6"><input class="form-control" type="text" name="commune" placeholder="Commune" required /></div>
+                  <div class="col-12"><input class="form-control" type="text" name="adresse" placeholder="Adresse" required /></div>
+                  <div class="col-md-6"><input class="form-control" type="text" name="produit" data-order-product value="" readonly /></div>
+                  <div class="col-md-6"><input class="form-control" type="number" name="quantite" value="1" min="1" required /></div>
+                  <div class="col-12"><textarea class="form-control" name="commentaire" rows="4" placeholder="Commentaire"></textarea></div>
+                  <div class="col-12"><button class="btn btn-primary-custom" type="submit">Valider la commande</button></div>
+                </div>
+              </form>
+            </div>
+          </div>
+        </div>
+      </div>
+    `;
+    document.body.insertAdjacentHTML('beforeend', modalHTML);
+    modal = document.getElementById('orderModal');
+  }
+
+  // Créer une instance Bootstrap Modal
+  let bsModal = null;
+
+  btns.forEach((btn) => {
+    btn.addEventListener('click', () => {
+      const productId = btn.dataset.productId;
+      const product = PRODUCTS[productId];
+
+      if (!product) {
+        window.dispatchEvent(new CustomEvent('bkyshop:toast', {
+          detail: { message: 'Produit introuvable.', type: 'warning' }
+        }));
+        return;
+      }
+
+      // Mettre à jour le nom du produit dans le formulaire
+      const orderInput = modal.querySelector('[data-order-product]');
+      if (orderInput) orderInput.value = product.name;
+
+      // Ouvrir le modal
+      if (!bsModal) {
+        bsModal = new bootstrap.Modal(modal);
+      }
+      bsModal.show();
+    });
+  });
+}
 
 document.addEventListener('DOMContentLoaded', () => {
-  initScrollEffects();
-  initCounters();
-  initSearch();
-  initFilters();
-  initProductGallery();
-  initForms();
-  initBackToTop();
-  initActiveNav();
+  const inits = [
+    initScrollEffects,
+    initCounters,
+    initSearch,
+    initFilters,
+    initCategoryOrderButtons,
+    initQuantityButtons,
+    initForms,
+    initBackToTop,
+    initActiveNav,
+    initProductPage,
+  ];
+
+  inits.forEach((fn) => {
+    try {
+      fn();
+    } catch (error) {
+      console.warn(`Erreur dans ${fn.name}:`, error);
+    }
+  });
 });
+
+window.BKYSHOP_STORAGE = {
+  get STORAGE_KEY() { return STORAGE_KEY; },
+  getSavedOrders,
+};
 
 function getSavedOrders() {
   try {
@@ -39,7 +433,7 @@ function getOrderPayload(form) {
   };
 
   fields.forEach((field) => {
-    const name = field.getAttribute('placeholder') || field.name || field.type || 'field';
+    const name = field.name || field.getAttribute('placeholder') || field.type || 'field';
     const value = field.value?.trim() || '';
     if (name && value && !orderPayload[name]) {
       orderPayload[name] = value;
@@ -49,16 +443,91 @@ function getOrderPayload(form) {
   return orderPayload;
 }
 
-async function registerOrder(orderPayload) {
-  saveOrderLocally(orderPayload);
+function sendToWhatsApp(payload) {
+  const isContact = !payload.produit || payload.produit === 'Produit non renseigné';
+  let message;
 
-  if (window.BKYSHOP_SUPABASE?.saveOrder) {
-    try {
-      await window.BKYSHOP_SUPABASE.saveOrder(orderPayload);
-    } catch (error) {
-      console.warn('La commande a bien été stockée localement, mais l’envoi Supabase a échoué.', error);
-    }
+  if (isContact) {
+    message = [
+      '📬 *Nouveau message de contact BKYSHOP*',
+      '━━━━━━━━━━━━━━━━━━',
+      `👤 *Nom :* ${payload.nom || payload.Nom || '—'}`,
+      `📧 *Email :* ${payload.email || payload.Email || '—'}`,
+      `📞 *Téléphone :* ${payload.telephone || payload.Téléphone || '—'}`,
+      `📋 *Objet :* ${payload.objet || payload.Objet || '—'}`,
+      '',
+      '💬 *Message :*',
+      `${payload.message || payload.Message || '—'}`,
+      '',
+      `🕐 ${new Date().toLocaleString('fr-FR')}`
+    ].join('\n');
+  } else {
+    message = [
+      '🛍️ *Nouvelle commande BKYSHOP*',
+      '━━━━━━━━━━━━━━━━━━',
+      `👤 *Client :* ${payload.nom || payload.Nom || '—'}`,
+      `📞 *Téléphone :* ${payload.telephone || payload.Téléphone || '—'}`,
+      `📍 *Ville :* ${payload.ville || payload.Ville || '—'}`,
+      `🏘️ *Commune :* ${payload.commune || payload.Commune || '—'}`,
+      `📮 *Adresse :* ${payload.adresse || payload.Adresse || '—'}`,
+      '',
+      `📦 *Produit :* ${payload.produit || '—'}`,
+      `🔢 *Quantité :* ${payload.quantite || 1}`,
+      `💬 *Commentaire :* ${payload.commentaire || '—'}`,
+      '',
+      `🆔 ${payload.id || ''}`,
+      `🕐 ${payload.date || new Date().toLocaleString('fr-FR')}`
+    ].join('\n');
   }
+
+  const url = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  const link = document.createElement('a');
+  link.href = url;
+  link.target = '_blank';
+  link.rel = 'noopener';
+  link.click();
+}
+
+async function sendEmail(payload) {
+  const isContact = !payload.produit || payload.produit === 'Produit non renseigné';
+
+  const formData = new FormData();
+  formData.append('_subject', isContact ? '📬 Nouveau message de contact - BKYSHOP' : '🛍️ Nouvelle commande - BKYSHOP');
+  formData.append('_captcha', 'false');
+
+  if (isContact) {
+    formData.append('Nom', payload.nom || payload.Nom || '—');
+    formData.append('Email', payload.email || payload.Email || '—');
+    formData.append('Téléphone', payload.telephone || payload.Téléphone || '—');
+    formData.append('Objet', payload.objet || payload.Objet || '—');
+    formData.append('Message', payload.message || payload.Message || '—');
+  } else {
+    formData.append('ID', payload.id || '');
+    formData.append('Date', payload.date || '');
+    formData.append('Client', payload.nom || payload.Nom || '—');
+    formData.append('Téléphone', payload.telephone || payload.Téléphone || '—');
+    formData.append('Ville', payload.ville || payload.Ville || '—');
+    formData.append('Commune', payload.commune || payload.Commune || '—');
+    formData.append('Adresse', payload.adresse || payload.Adresse || '—');
+    formData.append('Produit', payload.produit || '—');
+    formData.append('Quantité', String(payload.quantite || 1));
+    formData.append('Commentaire', payload.commentaire || '—');
+  }
+
+  try {
+    await fetch(`https://formsubmit.co/${EMAIL_TO}`, {
+      method: 'POST',
+      body: formData,
+    });
+  } catch (error) {
+    console.warn('Erreur envoi email:', error);
+  }
+}
+
+function registerOrder(orderPayload) {
+  saveOrderLocally(orderPayload);
+  sendToWhatsApp(orderPayload);
+  sendEmail(orderPayload);
 }
 
 function initScrollEffects() {
@@ -158,17 +627,33 @@ function initFilters() {
   });
 }
 
-function initProductGallery() {
-  const galleryMain = document.querySelector('[data-gallery-main]');
-  const thumbs = document.querySelectorAll('[data-gallery-thumb]');
+function initQuantityButtons() {
+  const minusBtns = document.querySelectorAll('[data-qty-minus]');
+  const plusBtns = document.querySelectorAll('[data-qty-plus]');
+  const qtyValues = document.querySelectorAll('[data-qty-value]');
+  const qtyInputs = document.querySelectorAll('input[type="number"][min="1"]');
 
-  if (!galleryMain || !thumbs.length) return;
+  minusBtns.forEach((btn, index) => {
+    btn.addEventListener('click', () => {
+      const valueEl = qtyValues[index];
+      const inputEl = qtyInputs[index] || btn.closest('.qty-box')?.querySelector('input[type="number"]');
+      let current = parseInt(valueEl?.textContent || (inputEl?.value || 1));
+      if (current > 1) {
+        current -= 1;
+        if (valueEl) valueEl.textContent = current;
+        if (inputEl) inputEl.value = current;
+      }
+    });
+  });
 
-  thumbs.forEach((thumb) => {
-    thumb.addEventListener('click', () => {
-      galleryMain.src = thumb.src;
-      thumbs.forEach((item) => item.classList.remove('active'));
-      thumb.classList.add('active');
+  plusBtns.forEach((btn, index) => {
+    btn.addEventListener('click', () => {
+      const valueEl = qtyValues[index];
+      const inputEl = qtyInputs[index] || btn.closest('.qty-box')?.querySelector('input[type="number"]');
+      let current = parseInt(valueEl?.textContent || (inputEl?.value || 1));
+      current += 1;
+      if (valueEl) valueEl.textContent = current;
+      if (inputEl) inputEl.value = current;
     });
   });
 }

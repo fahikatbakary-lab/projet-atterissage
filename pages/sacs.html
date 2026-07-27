@@ -51,8 +51,15 @@
             placeholder="Rechercher un sac..." /></div>
       </div>
 
+      <div class="row g-3 mb-4">
+        <div class="col-md-4"><select class="form-select" data-filter-price><option value="all">Tous prix</option><option value="under-45000">Moins de 45 000</option><option value="45000-70000">45 000 - 70 000</option><option value="over-70000">Plus de 70 000</option></select></div>
+        <div class="col-md-4"><select class="form-select" data-filter-stock><option value="all">Toutes disponibilités</option><option value="in-stock">En stock</option><option value="low-stock">Stock faible</option></select></div>
+        <div class="col-md-4"><select class="form-select" data-filter-color><option value="all">Toutes couleurs</option><option value="noir">Noir</option><option value="rouge">Rouge</option><option value="beige">Beige</option></select></div>
+      </div>
+
       <div class="row g-4">
-        <div class="col-12 col-md-6 col-lg-4" data-search-item data-product-card data-category="sac" data-price="18000"
+        <!-- Sac moyen -->
+        <div class="col-12 col-md-6 col-lg-4" data-search-item data-product-card data-category="sac" data-price="9000"
           data-stock="in-stock" data-color="beige">
           <div class="product-card h-100">
             <img src="../image/sacs moyen.jpeg" alt="Sac de voyage" />
@@ -60,12 +67,13 @@
               <h5>Sac Voyage moyen format</h5>
               <p class="product-price">9 000 FCFA </p>
               <p class="small text-muted">Sacs résistants avec plusieurs compartiments pour un rangement impeccable.</p>
-              <div class="d-flex gap-2"><a href="product.html" class="btn btn-primary-custom">Voir le produit</a><button
-                  class="btn btn-outline-secondary">Commander</button></div>
+              <div class="d-flex gap-2"><a href="product.html?id=sac-moyen-format" class="btn btn-primary-custom">Voir le produit</a><button
+                  class="btn btn-outline-secondary" data-product-id="sac-moyen-format">Commander</button></div>
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-4" data-search-item data-product-card data-category="sac" data-price="24000"
+        <!-- Sac Noir -->
+        <div class="col-12 col-md-6 col-lg-4" data-search-item data-product-card data-category="sac" data-price="12000"
           data-stock="in-stock" data-color="noir">
           <div class="product-card h-100">
             <img src="../image/gros sacs.jpeg" alt="Sac noir" />
@@ -73,12 +81,13 @@
               <h5> Grand Sac Voyage Noir en tissu</h5>
               <p class="product-price">12 000 FCFA </p>
               <p class="small text-muted">Conçu pour voyager léger avec un look premium et des finitions soignées.</p>
-              <div class="d-flex gap-2"><a href="product.html" class="btn btn-primary-custom">Voir le produit</a><button
-                  class="btn btn-outline-secondary">Commander</button></div>
+              <div class="d-flex gap-2"><a href="product.html?id=sac-noir-tissu" class="btn btn-primary-custom">Voir le produit</a><button
+                  class="btn btn-outline-secondary" data-product-id="sac-noir-tissu">Commander</button></div>
             </div>
           </div>
         </div>
-        <div class="col-12 col-md-6 col-lg-4" data-search-item data-product-card data-category="sac" data-price="32000"
+        <!-- Sac Bleu -->
+        <div class="col-12 col-md-6 col-lg-4" data-search-item data-product-card data-category="sac" data-price="10000"
           data-stock="low-stock" data-color="rouge">
           <div class="product-card h-100">
             <img src="../image/sac bleu.jpeg" alt="Sac bleu" />
@@ -86,16 +95,55 @@
               <h5>Sac Voyage Bleu format moyen en tissu</h5>
               <p class="product-price">10 000 FCFA </p>
               <p class="small text-muted">Un sac résistant et élégant pour des escapades dynamiques et stylées.</p>
-              <div class="d-flex gap-2"><a href="product.html" class="btn btn-primary-custom">Voir le produit</a><button
-                  class="btn btn-outline-secondary">Commander</button></div>
+              <div class="d-flex gap-2"><a href="product.html?id=sac-bleu-tissu" class="btn btn-primary-custom">Voir le produit</a><button
+                  class="btn btn-outline-secondary" data-product-id="sac-bleu-tissu">Commander</button></div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+     
   </section>
 
   <div id="toast-wrapper" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080"></div>
+
+  <footer class="footer-premium">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <h4>BKYSHOP</h4>
+          <p>Votre boutique premium pour des produits de voyage et de confort au quotidien.</p>
+        </div>
+        <div class="col-lg-2">
+          <h6>Liens rapides</h6>
+          <ul class="list-unstyled">
+            <li><a href="../index.html">Accueil</a></li>
+            <li><a href="../index.html#apropos">À propos</a></li>
+            <li><a href="../index.html#categories">Produits</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3">
+          <h6>Nos catégories</h6>
+          <ul class="list-unstyled">
+            <li><a href="valises.html">Valises</a></li>
+            <li><a href="sacs.html">Sacs</a></li>
+            <li><a href="sechoirs.html">Séchoirs</a></li>
+            <li><a href="ventilateurs.html">Ventilateurs</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3">
+          <h6>Contact</h6>
+          <ul class="list-unstyled">
+            <li>Abidjan, Côte d'Ivoire</li>
+            <li>+225 0544950997</li>
+            <li>bkyshop@gmail.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="text-center mt-4 pt-3 border-top border-light-subtle">
+        <small>&copy; 2026 BKYSHOP - Tous droits réservés</small>
+      </div>
+    </div>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>

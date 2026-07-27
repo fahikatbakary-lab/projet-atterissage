@@ -51,20 +51,27 @@
             placeholder="Rechercher un séchoir..." /></div>
       </div>
 
+      <div class="row g-3 mb-4">
+        <div class="col-md-4"><select class="form-select" data-filter-price><option value="all">Tous prix</option><option value="under-45000">Moins de 45 000</option><option value="45000-70000">45 000 - 70 000</option><option value="over-70000">Plus de 70 000</option></select></div>
+        <div class="col-md-4"><select class="form-select" data-filter-stock><option value="all">Toutes disponibilités</option><option value="in-stock">En stock</option><option value="low-stock">Stock faible</option></select></div>
+        <div class="col-md-4"><select class="form-select" data-filter-color><option value="all">Toutes couleurs</option><option value="noir">Noir</option><option value="rouge">Rouge</option><option value="beige">Beige</option></select></div>
+      </div>
+
       <div class="row g-4">
-        <div class="col-12 col-md-6 col-lg-4" data-search-item data-product-card data-category="sechoir"
-          data-price="15000" data-stock="in-stock" data-color="noir">
+        <!-- Séchoir en fer -->
+        <div class="col-12 col-md-6 col-lg-4" data-search-item data-product-card data-category="sechoir"data-price="12500" data-stock="in-stock" data-color="noir">
           <div class="product-card h-100">
             <img src="../image/sechoir .webp" alt="Séchoir" />
             <div class="p-4">
               <h5>Séchoir en fer</h5>
-              <p class="product-price">12 500 FCFA </p>
+              <p class="product-price">12 500 FCFA</p>
               <p class="small text-muted">Séchoir robuste, facile à installer et à utiliser.</p>
-              <div class="d-flex gap-2"><a href="product.html" class="btn btn-primary-custom">Voir le produit</a><button
-                  class="btn btn-outline-secondary">Commander</button></div>
+              <div class="d-flex gap-2"><a href="product.html?id=sechoir-fer" class="btn btn-primary-custom">Voir le produit</a><button
+                  class="btn btn-outline-secondary" data-product-id="sechoir-fer">Commander</button></div>
             </div>
           </div>
         </div>
+        <!-- Séchoir plastique -->
         <div class="col-12 col-md-6 col-lg-4" data-search-item data-product-card data-category="sechoir"
           data-price="19000" data-stock="in-stock" data-color="beige">
           <div class="product-card h-100">
@@ -73,29 +80,69 @@
               <h5>Séchoir en plastique</h5>
               <p class="product-price">19 000 FCFA </p>
               <p class="small text-muted">Une finition élégante et une performance de séchage fiable.</p>
-              <div class="d-flex gap-2"><a href="product.html" class="btn btn-primary-custom">Voir le produit</a><button
-                  class="btn btn-outline-secondary">Commander</button></div>
+              <div class="d-flex gap-2"><a href="product.html?id=sechoir-plastique" class="btn btn-primary-custom">Voir le produit</a><button
+                  class="btn btn-outline-secondary" data-product-id="sechoir-plastique">Commander</button></div>
             </div>
           </div>
         </div>
+        <!-- Séchoir arrêtable -->
         <div class="col-12 col-md-6 col-lg-4" data-search-item data-product-card data-category="sechoir"
-          data-price="22000" data-stock="low-stock" data-color="rouge">
+          data-price="18000" data-stock="low-stock" data-color="rouge">
           <div class="product-card h-100">
             <img src="../image/sechoirs.webp" alt="Séchoir arretable" />
             <div class="p-4">
               <h5>Séchoir arrêtable</h5>
               <p class="product-price">18 000 FCFA</p>
-              <p class="small text-muted">Un design moderne pour une meilleure optimisation de l’espace.</p>
-              <div class="d-flex gap-2"><a href="product.html" class="btn btn-primary-custom">Voir le produit</a><button
-                  class="btn btn-outline-secondary">Commander</button></div>
+              <p class="small text-muted">Un design moderne pour une meilleure optimisation de l&#8217;espace.</p>
+              <div class="d-flex gap-2"><a href="product.html?id=sechoir-arretable" class="btn btn-primary-custom">Voir le produit</a><button
+                  class="btn btn-outline-secondary" data-product-id="sechoir-arretable">Commander</button></div>
             </div>
           </div>
         </div>
-      </div>
-    </div>
+       
   </section>
 
   <div id="toast-wrapper" class="position-fixed bottom-0 end-0 p-3" style="z-index: 1080"></div>
+
+  <footer class="footer-premium">
+    <div class="container">
+      <div class="row g-4">
+        <div class="col-lg-4">
+          <h4>BKYSHOP</h4>
+          <p>Votre boutique premium pour des produits de voyage et de confort au quotidien.</p>
+        </div>
+        <div class="col-lg-2">
+          <h6>Liens rapides</h6>
+          <ul class="list-unstyled">
+            <li><a href="../index.html">Accueil</a></li>
+            <li><a href="../index.html#apropos">À propos</a></li>
+            <li><a href="../index.html#categories">Produits</a></li>
+            <li><a href="contact.html">Contact</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3">
+          <h6>Nos catégories</h6>
+          <ul class="list-unstyled">
+            <li><a href="valises.html">Valises</a></li>
+            <li><a href="sacs.html">Sacs</a></li>
+            <li><a href="sechoirs.html">Séchoirs</a></li>
+            <li><a href="ventilateurs.html">Ventilateurs</a></li>
+          </ul>
+        </div>
+        <div class="col-lg-3">
+          <h6>Contact</h6>
+          <ul class="list-unstyled">
+            <li>Abidjan, Côte d'Ivoire</li>
+            <li>+225 0544950997</li>
+            <li>bkyshop@gmail.com</li>
+          </ul>
+        </div>
+      </div>
+      <div class="text-center mt-4 pt-3 border-top border-light-subtle">
+        <small>&copy; 2026 BKYSHOP - Tous droits réservés</small>
+      </div>
+    </div>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"></script>
   <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>

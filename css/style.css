@@ -116,12 +116,15 @@ a {
     padding: 0.9rem 1.55rem;
     font-weight: 600;
     transition: all 0.3s ease;
+
 }
 
 .btn-primary-custom {
     background: var(--primary);
     color: var(--white);
     box-shadow: 0 12px 26px rgba(115, 34, 46, 0.22);
+     padding: 12px 12px;
+     
 }
 
 .btn-primary-custom:hover {
@@ -139,6 +142,58 @@ a {
 .btn-outline-custom:hover {
     background: var(--white);
     color: var(--primary);
+}
+
+.btn-outline-secondary {
+    border-radius: 999px;
+    padding: 0.5rem 1rem;
+    font-weight: 600;
+    border: 1px solid rgba(115, 34, 46, 0.2);
+    color: var(--primary);
+    transition: all 0.3s ease;
+}
+
+.btn-outline-secondary:hover {
+    background: var(--primary);
+    color: var(--white);
+}
+
+/* Accessibilité - focus visible */
+:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 4px;
+}
+
+.btn:focus-visible,
+.nav-link:focus-visible,
+a:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 2px;
+    border-radius: 999px;
+}
+
+.form-control:focus-visible,
+.form-select:focus-visible {
+    outline: 3px solid var(--primary);
+    outline-offset: 0;
+    box-shadow: 0 0 0 0.25rem rgba(115, 34, 46, 0.25);
+}
+
+/* Animation au scroll plus fluide */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+        scroll-behavior: auto !important;
+    }
+}
+
+/* Toast personnalisé */
+.toast {
+    border-radius: 12px;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
 }
 
 .section-shell {
@@ -291,16 +346,15 @@ a {
     border-radius: 1.25rem;
     overflow: hidden;
     box-shadow: var(--shadow);
+    background: #f5f5f5;
+    min-height: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.gallery-thumb {
-    cursor: pointer;
-    border: 2px solid transparent;
-    transition: all 0.2s ease;
-}
-
-.gallery-thumb.active {
-    border-color: var(--primary);
+.gallery-main img {
+    display: block;
 }
 
 .qty-box button {
@@ -336,5 +390,33 @@ a {
 
     .section-shell {
         padding: 4rem 0;
+    }
+
+    .hero-title {
+        font-size: clamp(1.8rem, 6vw, 2.8rem);
+    }
+
+    .stats-number {
+        font-size: 1.6rem;
+    }
+
+
+}
+
+@media (max-width: 480px) {
+    .hero {
+        min-height: 60vh;
+    }
+
+    .section-shell {
+        padding: 2.5rem 0;
+    }
+
+    .category-card img {
+        height: 180px;
+    }
+
+    .product-card img {
+        height: 160px;
     }
 }
