@@ -299,6 +299,27 @@ a:focus-visible {
     font-weight: 600;
 }
 
+.social-icon {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: rgba(115, 34, 46, 0.1);
+    color: var(--primary);
+    font-size: 1.25rem;
+    transition: all 0.3s ease;
+    text-decoration: none;
+}
+
+.social-icon:hover {
+    background: var(--primary);
+    color: var(--white);
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(115, 34, 46, 0.3);
+}
+
 .footer-premium {
     background: linear-gradient(135deg, #1d1d1f 0%, #2c1820 100%);
     color: var(--white);
