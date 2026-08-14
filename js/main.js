@@ -489,6 +489,9 @@ function sendToWhatsApp(payload) {
 }
 
 async function sendEmail(payload) {
+  // Mode hors ligne : on évite l'appel réseau externe (la commande reste enregistrée localement).
+  if (typeof navigator !== 'undefined' && navigator.onLine === false) return;
+
   const isContact = !payload.produit || payload.produit === 'Produit non renseigné';
 
   const formData = new FormData();
